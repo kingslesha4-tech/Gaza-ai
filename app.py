@@ -21,7 +21,7 @@ if prompt := st.chat_input("Fala King, o que precisa?"):
 
     with st.chat_message("assistant"):
         response = client.models.generate_content(
-            model="gemini-3.8-flash",
+            model="gemini-1.5-flash",
             contents=prompt
         )
         st.markdown(response.text)
