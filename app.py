@@ -28,7 +28,7 @@ if prompt := st.chat_input("Fala King, o que precisa?"):
         with st.spinner("Pensando..."):
             try:
                 response = client.models.generate_content(
-                    model="gemini-2.0-flash",
+                    model="gemini-2.5-flash",
                     contents=prompt
                 )
                 resposta = response.text
