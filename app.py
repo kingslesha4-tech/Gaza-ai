@@ -4,13 +4,8 @@ from google import genai
 st.set_page_config(page_title="Gaza AI", page_icon="👑")
 st.title("Gaza AI - King 👑")
 
-try:
-    api_key = st.secrets["gemini"]["api_key"]
-    client = genai.Client(api_key=api_key)
-response = client.models.generate_content(
-    model="gemini-3.8-flash",
-    contents=prompt
-)
+api_key = st.secrets["gemini"]["api_key"]
+client = genai.Client(api_key=api_key)
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -25,14 +20,9 @@ if prompt := st.chat_input("Fala King, o que precisa?"):
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
-        with st.spinner("Pensando..."):
-            try:
-                response = client.models.generate_content(
-                    model="gemini-2.0-flash",
-                    contents=prompt
-                )
-                resposta = response.text
-                st.markdown(resposta)
-                st.session_state.messages.append({"role": "assistant", "content": resposta})
-            except Exception as e:
-                st.error(f"Erro: {e}")
+        response = client.models.generate_content(
+            model="gemini-3.8-flash",
+            contents=prompt
+        )
+        st.markdown(response.text)
+        st.session_state.messages.append({"role": "assistant", "content": response.text})
