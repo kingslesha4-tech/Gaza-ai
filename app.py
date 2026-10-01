@@ -7,9 +7,10 @@ st.title("Gaza AI - King 👑")
 try:
     api_key = st.secrets["gemini"]["api_key"]
     client = genai.Client(api_key=api_key)
-except Exception as e:
-    st.error(f"Erro na chave: {e}")
-    st.stop()
+response = client.models.generate_content(
+    model="gemini-3.8-flash",
+    contents=prompt
+)
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
