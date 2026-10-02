@@ -1,110 +1,79 @@
 import streamlit as st
+import time
 
 st.set_page_config(page_title="King Slesha Moz Studio", page_icon="👑", layout="wide")
 
-# CSS IGUAL DA FOTO - PRETO E OURO
 st.markdown("""
 <style>
-.stApp {background-color:#070708; color:white}
-h1, h2, h3 {color:#f7d774}
-.card {
-    background: #111113;
-    border: 1px solid #f7d77440;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 0 20px #f7d77415;
-}
-.gold-btn {
-    background: linear-gradient(90deg,#f7d774,#ffcc33);
-    color:black; font-weight:900; border-radius:14px; padding:12px;
-    border:none; width:100%; font-size:18px;
-}
-.style-btn {
-    background:#1a1a1a; border:1px solid #f7d77488; color:white;
-    padding:10px; border-radius:12px; width:100%; text-align:left;
-}
-.style-btn.active {
-    background:#f7d774; color:black; font-weight:800;
-}
+.stApp {background:#08080a; color:white}
+.card {background:#131315; border:1px solid #f7d77433; border-radius:18px; padding:18px; margin-bottom:16px}
+.topbar {display:flex; align-items:center; justify-content:space-between; background:#131315; border:1px solid #f7d77433; border-radius:16px; padding:12px 18px; gap:10px}
+.logo {color:#f7d774; font-weight:900; line-height:1.1; font-size:18px}
+.menu {display:flex; gap:14px; color:#888; font-size:14px; flex-wrap:wrap}
+.menu b {color:#f7d774; border-bottom:2px solid #f7d774}
+.badge {background:#f7d774; color:black; border-radius:20px; padding:5px 12px; font-size:12px; font-weight:700; float:right; margin-top:8px}
+.stButton>button {background:linear-gradient(90deg,#f7d774,#ffcc33); color:black; font-weight:900; border-radius:14px; height:52px; width:100%; border:none}
+textarea {background:#0e0e0f!important; color:white!important}
 </style>
 """, unsafe_allow_html=True)
 
-# TOPO IGUAL DA FOTO
+# TOPO FIXO MOBILE
 st.markdown("""
-<div style="display:flex; justify-content:space-between; align-items:center; background:#111113; border:1px solid #f7d77440; border-radius:16px; padding:14px 20px;">
-    <div style="display:flex; align-items:center; gap:12px">
-        <div style="font-size:28px">〰️</div>
-        <div><b style="color:#f7d774; font-size:20px">King Slesha Moz<br>Music Studio</b></div>
-    </div>
-    <div style="display:flex; gap:20px; color:#aaa">
-        <span style="color:#f7d774; border-bottom:2px solid #f7d774"><b>Create</b></span>
-        <span>Library</span><span>Projects</span><span>Sounds</span>
-    </div>
-    <div>🔔 ⚙️ <b style="background:#f7d774; color:black; border-radius:50%; padding:6px 12px">A</b> Alex</div>
+<div class="topbar">
+  <div style="display:flex; align-items:center; gap:10px">
+    <span style="font-size:22px">〰️</span>
+    <div class="logo">King Slesha Moz<br>Music Studio</div>
+  </div>
+  <div class="menu"><b>Create</b><span>Library</span><span>Projects</span><span>Sounds</span></div>
+  <div style="font-size:18px">🔔 ⚙️ <span style="background:#f7d774; color:black; border-radius:50%; padding:4px 10px">A</span></div>
 </div>
-<div style="text-align:right; margin-top:8px"><span style="background:#f7d774; color:black; border-radius:20px; padding:4px 12px; font-size:12px">Model: KingSlesha-Music v2.1</span></div>
+<div style="text-align:right"><span class="badge">Model: KingSlesha-Music v2.1</span></div>
 """, unsafe_allow_html=True)
 
-st.markdown("<h1>Create New Track</h1><p style='color:#aaa'>Generate original music with AI — lyrics, style, and voice in seconds</p>", unsafe_allow_html=True)
+st.markdown("## Create New Track")
+st.markdown("<p style='color:#888'>Generate original music with AI — lyrics, style, and voice in seconds</p>", unsafe_allow_html=True)
 
-col1, col2 = st.columns([1.1, 0.9])
+col1, col2 = st.columns([1.2, 0.8])
 
 with col1:
-    st.markdown('<div class="card">', unsafe_allow_html=True)
-    st.markdown("🟡 **LYRICS INPUT**")
-    lyrics = st.text_area("Write your lyrics here...", height=280,
-    placeholder="[Verse]\nCity lights flicker, late night thunder,\nRhythms echo, we rise up stronger,\nDancing through the silence...\n[Chorus]\nKing Slesha Moz...")
-
-    c1, c2 = st.columns([1,1])
-    with c1:
-        st.button("✨ AI Enhance")
-    with c2:
-        st.caption(f"{len(lyrics)} / 1000 characters")
-    st.caption("ℹ️ Tip: Use tags like [Chorus], [Verse], [Bridge] for better structure")
-    st.markdown('</div>', unsafe_allow_html=True)
+    with st.container(border=False):
+        st.markdown('<div class="card">', unsafe_allow_html=True)
+        st.markdown("🟡 **LYRICS INPUT**")
+        lyrics = st.text_area("Write your lyrics here...", height=260, placeholder="[Verse]\nCity lights flicker, late night thunder,\nRhythms echo, we rise up stronger\n[Chorus]\nKing Slesha Moz no beat...")
+        c1,c2 = st.columns([1,1])
+        c1.button("✨ AI Enhance")
+        c2.caption(f"{len(lyrics)}/1000")
+        st.caption("Tip: Use [Chorus], [Verse], [Bridge] for better structure")
+        st.markdown('</div>', unsafe_allow_html=True)
 
 with col2:
-    st.markdown('<div class="card">', unsafe_allow_html=True)
-    st.markdown("<center>🟡 INSTRUMENTAL STYLE</center>", unsafe_allow_html=True)
+    with st.container(border=False):
+        st.markdown('<div class="card">', unsafe_allow_html=True)
+        st.markdown("<center>🟡 INSTRUMENTAL STYLE</center>", unsafe_allow_html=True)
+        instrumental = st.selectbox("Style", ["Amapiano 🇿🇦", "Afrobeat 🔥", "Trap 💀", "Drill", "Kizomba ❤️"], index=0)
+        st.markdown("<center>🟡 VOICE SELECTOR</center>", unsafe_allow_html=True)
+        voice = st.selectbox("Voice", ["Mali — Male, Warm & Smooth", "Nayara — Feminina", "King Slesha — Original Moz"])
 
-    # Botões estilo da foto
-    r1c1, r1c2 = st.columns(2)
-    with r1c1:
-        instrumental = st.radio("Style", ["Amapiano", "Trap", "Kizomba"], label_visibility="collapsed")
-        st.markdown(f"<div class='style-btn active'>〰️ {instrumental}</div>", unsafe_allow_html=True)
-    with r1c2:
-        st.selectbox(" ", ["Afrobeat", "Drill"], label_visibility="collapsed")
+        t1,t2 = st.columns(2)
+        t1.slider("Tempo", 80, 160, 112, format="%d BPM")
+        t2.slider("Duration", 30, 180, 150, format="%d s")
 
-    # Seletores reais do Streamlit
-    instrumental_choice = st.selectbox("Escolhe instrumental:", ["Amapiano", "Afrobeat", "Trap", "Drill", "Kizomba"])
-    voice = st.selectbox("VOICE SELECTOR", ["Mali — Male, Warm & Smooth", "Nayara — Feminina Doce", "King Slesha — Original Moz"])
+        if st.button("✨ GENERATE"):
+            if not lyrics:
+                st.warning("Escreve letra KING!")
+            else:
+                bar = st.progress(0, text="King Slesha a cozinhar...")
+                for i in range(100):
+                    time.sleep(0.015)
+                    bar.progress(i+1)
+                st.success(f"🔥 {instrumental} pronto, KING!")
+                st.audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
+                st.download_button("⬇️ Baixar Hit", data=lyrics.encode(), file_name="king_slesha_hit.mp3")
+        st.markdown('</div>', unsafe_allow_html=True)
 
-    col_t, col_d = st.columns(2)
-    with col_t:
-        st.metric("Tempo", "112 BPM")
-        st.slider("Tempo", 80, 160, 112, label_visibility="collapsed")
-    with col_d:
-        st.metric("Duration", "2:30")
-        st.slider("Dur", 30, 180, 150, label_visibility="collapsed")
-
-    if st.button("✨ GENERATE", use_container_width=True):
-        if not lyrics:
-            st.warning("Escreve letra primeiro KING!")
-        else:
-            with st.spinner(f"King Slesha a gerar {instrumental_choice}..."):
-                import time
-                time.sleep(2)
-            st.success(f"🔥 Hit {instrumental_choice} gerado!")
-            st.audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
-
-    st.markdown('</div>', unsafe_allow_html=True)
-
-# PLAYER EM BAIXO IGUAL FOTO
 st.markdown("""
-<div class="card" style="margin-top:20px; display:flex; justify-content:space-between; align-items:center">
-    <div>🎵 <b>Untitled Track • Ready to Generate</b><br><small style="color:#888">No audio yet — generate to preview</small></div>
-    <div>⏮️ ▶️ ⏭️</div>
-    <div>🔊 ⬇️ 📤...</div>
+<div class="card" style="display:flex; justify-content:space-between; align-items:center; padding:12px 18px">
+<b>🎵 Untitled Track • Ready to Generate</b> <span>⏮️ ▶️ ⏭️ &nbsp; 🔊 ⬇️</span>
 </div>
-<div style="text-align:center; color:#555; margin-top:10px">👑 King Slesha Moz Studio | Matola, Maputo 🇲🇿</div>
+<center style="color:#555; margin-top:8px">👑 King Slesha Moz Studio | Matola 🇲🇿 | 2026</center>
 """, unsafe_allow_html=True)
